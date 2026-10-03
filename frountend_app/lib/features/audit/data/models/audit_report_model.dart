@@ -1,40 +1,5 @@
-// class AuditReportModel {
-//   final String id;
-//   final String facilityName;
-//   final String activityType;
-//   final String imageUrl;
-//   final int complianceScore;
-//   final String status;
-//   final List<String> detectedViolations;
-//   final List<String> correctiveActions;
-
-//   AuditReportModel({
-//     required this.id,
-//     required this.facilityName,
-//     required this.activityType,
-//     required this.imageUrl,
-//     required this.complianceScore,
-//     required this.status,
-//     required this.detectedViolations,
-//     required this.correctiveActions,
-//   });
-
-//   factory AuditReportModel.fromJson(Map<String, dynamic> json) {
-//     return AuditReportModel(
-//       id: json['id'] ?? '',
-//       facilityName: json['facility_name'] ?? '',
-//       activityType: json['activity_type'] ?? '',
-//       imageUrl: json['image_url'] ?? '',
-//       complianceScore: json['compliance_score'] ?? 0,
-//       status: json['status'] ?? 'under_review',
-//       detectedViolations: List<String>.from(json['detected_violations'] ?? []),
-//       correctiveActions: List<String>.from(json['corrective_actions'] ?? []),
-//     );
-//   }
-// }
 
 import 'package:frountend_app/features/audit/domain/entites/audit_report_entity.dart';
-
 
 class AuditReportModel extends AuditReportEntity {
   const AuditReportModel({
