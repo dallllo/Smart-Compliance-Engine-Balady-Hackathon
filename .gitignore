@@ -1,0 +1,29 @@
+# Environment variables (الملفات الحساسة)
+.env
+*.env
+.env.*
+
+# Python & Virtual Environment (ملفات البيئة الوهمية للباكند)
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+*.env
+.venv/
+__pycache__/
+.dart_tool/
+build/
+
+agentic-RAG/.venv/
+
+# Flutter & Dart (ملفات البناء والمحاكي)
+.dart_tool/
+.idea/
+.vscode/
+build/
+*.eml
+*.freezed.g.dart
+
+# Mac OS System files
+.DS_Store
