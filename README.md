@@ -87,7 +87,7 @@ backend_agents/
 ### 1️⃣ الاستنساخ (Clone the Repository)
 
 ```bash
-git clone [https://github.com/your-username/smart-compliance-engine.git](https://github.com/your-username/smart-compliance-engine.git)
+git clone https://github.com/dallllo/Smart-Compliance-Engine-Balady-Hackathon.git
 cd smart-compliance-engine
 
 ```
