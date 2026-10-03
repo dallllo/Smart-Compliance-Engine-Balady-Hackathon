@@ -1,9 +1,8 @@
-# Environment variables (الملفات الحساسة)
+
 .env
 *.env
 .env.*
 
-# Python & Virtual Environment (ملفات البيئة الوهمية للباكند)
 .venv/
 venv/
 __pycache__/
@@ -17,7 +16,6 @@ build/
 
 agentic-RAG/.venv/
 
-# Flutter & Dart (ملفات البناء والمحاكي)
 .dart_tool/
 .idea/
 .vscode/
