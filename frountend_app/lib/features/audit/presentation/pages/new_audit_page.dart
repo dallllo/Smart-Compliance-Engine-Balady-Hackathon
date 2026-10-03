@@ -5,272 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 import '../cubit/audit_cubit.dart';
 import '../cubit/audit_state.dart';
-
-// class NewAuditPage extends HookWidget {
-//   const NewAuditPage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final facilityNameController = useTextEditingController();
-//     final activityTypeController = useTextEditingController(text: 'مطعم');
-
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('فحص منشأة جديدة'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           children: [
-//             TextField(
-//               controller: facilityNameController,
-//               decoration: const InputDecoration(
-//                 labelText: 'اسم المنشأة/المحل',
-//                 border: OutlineInputBorder(),
-//               ),
-//             ),
-//             const SizedBox(height: 16),
-//             TextField(
-//               controller: activityTypeController,
-//               decoration: const InputDecoration(
-//                 labelText: 'نوع النشاط',
-//                 border: OutlineInputBorder(),
-//               ),
-//             ),
-//             const SizedBox(height: 24),
-//             BlocConsumer<AuditCubit, AuditState>(
-//               listener: (context, state) {
-//                 if (state is AuditSuccessState) {
-//                   ScaffoldMessenger.of(context).showSnackBar(
-//                     const SnackBar(content: Text('تم الفحص وإصدار التقرير بنجاح!')),
-//                   );
-//                 } else if (state is AuditErrorState) {
-//                   ScaffoldMessenger.of(context).showSnackBar(
-//                     SnackBar(content: Text('خطأ: ${state.message}')),
-//                   );
-//                 }
-//               },
-//               builder: (context, state) {
-//                 if (state is AuditLoadingState) {
-//                   return const CircularProgressIndicator();
-//                 }
-
-//                 final newReportId = const Uuid().v4();
-                
-//                 return
-                
-//                  ElevatedButton.icon(
-//                   onPressed: () {
-//                     context.read<AuditCubit>().runAudit(
-//                           reportId: newReportId, // ID تجريبي
-//                           imageUrl: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5',
-//                           activityType: activityTypeController.text, 
-//                           facilityName: facilityNameController.text,
-//                         );
-//                   },
-//                   icon: const Icon(Icons.analytics_outlined),
-//                   label: const Text('بدء التقييم والمسح الذكي'),
-//                   style: ElevatedButton.styleFrom(
-//                     minimumSize: const Size.fromHeight(50),
-//                   ),
-//                 );
-//               },
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
-// import 'dart:io';
-
-// class NewAuditPage extends HookWidget {
-//   const NewAuditPage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final facilityNameController = useTextEditingController();
-//     final activityTypeController = useTextEditingController(text: 'مطعم');
-//     final selectedImage = useState<XFile?>(null);
-//     final picker = useMemoized(() => ImagePicker());
-
-//     Future<void> pickImage(ImageSource source) async {
-//       final image = await picker.pickImage(
-//         source: source,
-//         imageQuality: 70, // ضغط الصورة لسرعة الرفع
-//       );
-//       if (image != null) {
-//         selectedImage.value = image;
-//       }
-//     }
-
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('فحص منشأة جديدة'),
-//       ),
-//       body: SingleChildScrollView(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           children: [
-//             // معاينة الصورة المحددة أو خيارات التقاطها
-//             GestureDetector(
-//               onTap: () {
-//                 _showImageSourceDialog(context, pickImage);
-//               },
-//               child: Container(
-//                 height: 180,
-//                 width: double.infinity,
-//                 decoration: BoxDecoration(
-//                   color: Colors.grey.shade100,
-//                   borderRadius: BorderRadius.circular(16),
-//                   border: Border.all(
-//                     color: Colors.grey.shade300,
-//                     style: BorderStyle.solid,
-//                   ),
-//                 ),
-//                 child: selectedImage.value != null
-//                     ? ClipRRect(
-//                         borderRadius: BorderRadius.circular(16),
-//                         child: Image.file(
-//                           File(selectedImage.value!.path),
-//                           fit: BoxFit.cover,
-//                         ),
-//                       )
-//                     : Column(
-//                         mainAxisAlignment: MainAxisAlignment.center,
-//                         children: [
-//                           Icon(
-//                             Icons.add_a_photo_outlined,
-//                             size: 48,
-//                             color: Theme.of(context).colorScheme.primary,
-//                           ),
-//                           const SizedBox(height: 8),
-//                           const Text(
-//                             'اضغط لالتقاط صورة المنشأة أو اختيارها',
-//                             style: TextStyle(
-//                               fontSize: 14,
-//                               fontWeight: FontWeight.w500,
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//               ),
-//             ),
-//             const SizedBox(height: 20),
-
-//             TextField(
-//               controller: facilityNameController,
-//               decoration: const InputDecoration(
-//                 labelText: 'اسم المنشأة / المحل',
-//                 border: OutlineInputBorder(),
-//               ),
-//             ),
-//             const SizedBox(height: 16),
-//             TextField(
-//               controller: activityTypeController,
-//               decoration: const InputDecoration(
-//                 labelText: 'نوع النشاط',
-//                 border: OutlineInputBorder(),
-//               ),
-//             ),
-//             const SizedBox(height: 24),
-
-//             BlocConsumer<AuditCubit, AuditState>(
-//               listener: (context, state) {
-//                 if (state is AuditSuccessState) {
-//                   ScaffoldMessenger.of(context).showSnackBar(
-//                     const SnackBar(
-//                       content: Text('تم الفحص وإصدار التقرير بنجاح!'),
-//                     ),
-//                   );
-//                   Navigator.pop(context);
-//                 } else if (state is AuditErrorState) {
-//                   ScaffoldMessenger.of(context).showSnackBar(
-//                     SnackBar(content: Text('خطأ: ${state.message}')),
-//                   );
-//                 }
-//               },
-//               builder: (context, state) {
-//                 if (state is AuditLoadingState) {
-//                   return const CircularProgressIndicator();
-//                 }
-
-//                 return ElevatedButton.icon(
-//                   onPressed: () {
-//                     if (facilityNameController.text.trim().isEmpty) {
-//                       ScaffoldMessenger.of(context).showSnackBar(
-//                         const SnackBar(content: Text('يرجى إدخال اسم المنشأة')),
-//                       );
-//                       return;
-//                     }
-
-//                     final newReportId = const Uuid().v4();
-
-//                     // في حال عدم التقاط صورة، نستخدم صورة افتراضية
-//                     final imagePath = selectedImage.value?.path ??
-//                         'https://images.unsplash.com/photo-1555396273-367ea4eb4db5';
-
-//                     context.read<AuditCubit>().runAudit(
-//                           reportId: newReportId,
-//                           imageUrl: imagePath,
-//                           activityType: activityTypeController.text,
-//                           facilityName: facilityNameController.text,
-//                         );
-//                   },
-//                   icon: const Icon(Icons.analytics_outlined),
-//                   label: const Text('بدء التقييم والمسح الذكي'),
-//                   style: ElevatedButton.styleFrom(
-//                     minimumSize: const Size.fromHeight(50),
-//                     shape: RoundedRectangleBorder(
-//                       borderRadius: BorderRadius.circular(12),
-//                     ),
-//                   ),
-//                 );
-//               },
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   void _showImageSourceDialog(
-//       BuildContext context, Function(ImageSource) onSelect) {
-//     showModalBottomSheet(
-//       context: context,
-//       shape: const RoundedRectangleBorder(
-//         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-//       ),
-//       builder: (_) => SafeArea(
-//         child: Wrap(
-//           children: [
-//             ListTile(
-//               leading: const Icon(Icons.camera_alt),
-//               title: const Text('التقاط صورة بالكاميرا'),
-//               onTap: () {
-//                 Navigator.pop(context);
-//                 onSelect(ImageSource.camera);
-//               },
-//             ),
-//             ListTile(
-//               leading: const Icon(Icons.photo_library),
-//               title: const Text('اختيار صورة من المعرض (Google Maps)'),
-//               onTap: () {
-//                 Navigator.pop(context);
-//                 onSelect(ImageSource.gallery);
-//               },
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
-
 import 'dart:io';
 
 class NewAuditPage extends HookWidget {
@@ -303,7 +37,6 @@ class NewAuditPage extends HookWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // معاينة الصورة المحددة أو خيارات التقاطها
             GestureDetector(
               onTap: () => _showImageSourceDialog(context, pickImage),
               child: Container(
@@ -347,8 +80,6 @@ class NewAuditPage extends HookWidget {
               ),
             ),
             const SizedBox(height: 24),
-
-            // حقل اسم المنشأة
             TextField(
               controller: facilityNameController,
               decoration: InputDecoration(
@@ -364,8 +95,6 @@ class NewAuditPage extends HookWidget {
               ),
             ),
             const SizedBox(height: 16),
-
-            // حقل نوع النشاط
             TextField(
               controller: activityTypeController,
               decoration: InputDecoration(
@@ -381,8 +110,6 @@ class NewAuditPage extends HookWidget {
               ),
             ),
             const SizedBox(height: 28),
-
-            // زر بدء التقييم
             BlocConsumer<AuditCubit, AuditState>(
               listener: (context, state) {
                 if (state is AuditSuccessState) {
