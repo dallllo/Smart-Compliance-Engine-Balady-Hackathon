@@ -87,8 +87,6 @@ backend_agents/
 
 <img width="1280" height="565" alt="5911058963325718502" src="https://github.com/user-attachments/assets/5b078200-d9fa-47ff-8284-7539f178a943" />
 
-https://github.com/user-attachments/assets/518c8d70-d34e-48e8-a0d1-de150ddd320e
-
 https://github.com/user-attachments/assets/c887b32d-c09d-4eee-ba3e-d550cd7b4c8a
 ## 🚀 كيفية التشغيل والتهيئة (Getting Started)
 
