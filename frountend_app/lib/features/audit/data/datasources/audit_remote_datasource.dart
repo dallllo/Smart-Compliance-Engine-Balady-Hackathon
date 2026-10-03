@@ -29,9 +29,7 @@ class AuditRemoteDataSourceImpl implements AuditRemoteDataSource {
     required String activityType,
     required String facilityName,
   }) async {
-    // final userId = supabaseClient.auth.currentUser?.id;
-    final userId ="e5390c18-fed2-47f4-9b53-0bfd8d14a91c";
-    // 1. إرسال الطلب لـ FastAPI عبر Dio
+    final userId = supabaseClient.auth.currentUser?.id;
     final response = await dio.post(
       '${AppConstants.fastApiBaseUrl}/api/v1/analyze-audit',
       data: {
@@ -44,7 +42,6 @@ class AuditRemoteDataSourceImpl implements AuditRemoteDataSource {
     );
 
     if (response.statusCode == 200) {
-      // 2. جلب أحدث بيانات التقرير المحدثة من Supabase
       await Future.delayed(const Duration(milliseconds: 500));
       final data = await supabaseClient
           .from('audit_reports')
