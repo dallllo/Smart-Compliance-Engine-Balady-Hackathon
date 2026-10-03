@@ -13,7 +13,7 @@ class NewAuditPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final facilityNameController = useTextEditingController();
-    final activityTypeController = useTextEditingController(text: 'مطعم');
+    final activityTypeController = useTextEditingController();
     final selectedImage = useState<XFile?>(null);
     final picker = useMemoized(() => ImagePicker());
 
